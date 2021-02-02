@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>JSON</h1>
+    <h2>Javascript Object Notation</h2>
+    <ul id="users-container">
+
+    </ul>
+
+    <script>
+        // const user = {
+        //     id: 245,
+        //     name: 'Masud',
+        //     lover: {
+        //         gf: 'jamila',
+        //         favF: 'angur'
+        //     },
+        //     friendsAge: [12, 34, 23],
+        //     friends: ['kamal', 'jamal', 'samal']
+        // }
+        // // {"id":245,"name":"Masud"} 
+        // const userJSON = JSON.stringify(user) //object k string a convert kora
+        // console.log(userJSON)
+
+        // const userFromJson = JSON.parse(userJSON) //stringify k object a convert kora
+        // //  {id: 245, name: "Masud"}
+        // console.log(userFromJson)
+
+
+
+        //***************javascript placeholder google theke niye asa copy paste
+        fetch('https://jsonplaceholder.typicode.com/users')
+        .then(response => response.json())
+        .then(json => displayUser(json)) //ekhane function call korte hobe
+
+        function displayUser(users){
+            const userNames = users.map(user => user.username)
+            const ul = document.getElementById('users-container')
+
+            for(let i = 0; i < userNames.length; i++){
+                const name = userNames[i]
+                const li = document.createElement("li")
+                li.innerText = name
+                ul.appendChild(li)
+            }
+        }
+    </script>
+</body>
+</html>
